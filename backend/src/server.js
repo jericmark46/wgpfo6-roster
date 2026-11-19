@@ -8,9 +8,18 @@ dotenv.config();
 
 const app = express();
 
+const clientOrigins = [
+  'http://localhost:5173',
+  'https://wgpfo6-roster.vercel.app',
+  ...(process.env.CLIENT_URL || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean),
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL?.split(',') || ['http://localhost:5173'],
+    origin: clientOrigins,
     methods: ['GET', 'POST'],
   }),
 );
@@ -33,6 +42,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 app.use('/api', async (req, res, next) => {
+  if (req.path === '/auth/verify') return next();
   try {
     await connectDB();
     next();
