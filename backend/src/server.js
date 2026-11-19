@@ -16,6 +16,13 @@ app.use(
 );
 app.use(express.json({ limit: '100kb' }));
 
+app.use((req, res, next) => {
+  if (req.originalUrl.includes('ccbf-iloilo.vercel.app')) {
+    return res.status(403).json({ message: 'Forbidden.' });
+  }
+  next();
+});
+
 app.get('/api/health', async (req, res) => {
   try {
     await connectDB();
