@@ -6,8 +6,8 @@
   "description": "Express + MongoDB API for the Family Roster Search system",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node --watch src/server.js",
-    "start": "node src/server.js",
+    "dev": "node --watch src/local.js",
+    "start": "node src/local.js",
     "convert": "python scripts/excel-to-ndjson.py",
     "import": "node scripts/import.js",
     "setup:data": "npm run convert && npm run import"

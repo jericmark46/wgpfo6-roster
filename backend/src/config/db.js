@@ -5,7 +5,6 @@ dotenv.config();
 
 const dbName = process.env.DB_NAME || 'family_roster';
 const collectionName = process.env.COLLECTION_NAME || 'members';
-const isServerless = process.env.VERCEL === '1';
 
 let client;
 let db;
@@ -23,8 +22,8 @@ export async function connectDB() {
   connecting = (async () => {
     client = new MongoClient(uri, {
       maxPoolSize: 20,
-      minPoolSize: isServerless ? 0 : 2,
-      serverSelectionTimeoutMS: isServerless ? 8000 : 15000,
+      minPoolSize: 0,
+      serverSelectionTimeoutMS: 10000,
     });
 
     await client.connect();
