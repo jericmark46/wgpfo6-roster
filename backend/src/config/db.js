@@ -3,30 +3,44 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const uri = process.env.MONGODB_URI;
 const dbName = process.env.DB_NAME || 'family_roster';
 const collectionName = process.env.COLLECTION_NAME || 'members';
-
-if (!uri) {
-  throw new Error('MONGODB_URI is missing. Check the backend .env file.');
-}
+const isServerless = process.env.VERCEL === '1';
 
 let client;
 let db;
+let connecting;
 
 export async function connectDB() {
   if (db) return db;
+  if (connecting) return connecting;
 
-  client = new MongoClient(uri, {
-    maxPoolSize: 20,
-    minPoolSize: 2,
-    serverSelectionTimeoutMS: 15000,
-  });
+  const uri = process.env.MONGODB_URI;
+  if (!uri) {
+    throw new Error('MONGODB_URI is missing. Set it in the environment variables.');
+  }
 
-  await client.connect();
-  db = client.db(dbName);
-  console.log(`MongoDB connected: ${dbName}.${collectionName}`);
-  return db;
+  connecting = (async () => {
+    client = new MongoClient(uri, {
+      maxPoolSize: 20,
+      minPoolSize: isServerless ? 0 : 2,
+      serverSelectionTimeoutMS: isServerless ? 8000 : 15000,
+    });
+
+    await client.connect();
+    db = client.db(dbName);
+    console.log(`MongoDB connected: ${dbName}.${collectionName}`);
+    return db;
+  })();
+
+  try {
+    return await connecting;
+  } catch (error) {
+    client = undefined;
+    throw error;
+  } finally {
+    connecting = undefined;
+  }
 }
 
 export function getDB() {
@@ -53,4 +67,5 @@ export async function closeDB() {
   if (client) await client.close();
   client = undefined;
   db = undefined;
+  connecting = undefined;
 }
