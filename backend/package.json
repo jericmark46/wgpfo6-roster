@@ -1,0 +1,21 @@
+{
+  "name": "family-roster-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Express + MongoDB API for the Family Roster Search system",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "convert": "python scripts/excel-to-ndjson.py",
+    "import": "node scripts/import.js",
+    "setup:data": "npm run convert && npm run import"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "mongodb": "^6.20.0"
+  }
+}
