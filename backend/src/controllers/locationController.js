@@ -1,20 +1,23 @@
 import { getHouseholdsCollection } from '../config/db.js';
 
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const exact = (value) => ({ $regex: `^${escapeRegex(value)}$`, $options: 'i' });
+
 export async function getLocations(req, res) {
   try {
     const province = typeof req.query.province === 'string' ? req.query.province.trim() : '';
     const municipality = typeof req.query.municipality === 'string' ? req.query.municipality.trim() : '';
 
     const match = {};
-    if (province) match.province = province;
-    if (municipality) match.municipality = municipality;
+    if (province) match.province = exact(province);
+    if (municipality) match.municipality = exact(municipality);
 
     const collection = getHouseholdsCollection();
     const [provinces, municipalities, barangays] = await Promise.all([
       collection.distinct('province', {}, { maxTimeMS: 15000 }),
-      province ? collection.distinct('municipality', { province }, { maxTimeMS: 15000 }) : [],
+      province ? collection.distinct('municipality', match, { maxTimeMS: 15000 }) : [],
       province && municipality
-        ? collection.distinct('barangay', { province, municipality }, { maxTimeMS: 15000 })
+        ? collection.distinct('barangay', match, { maxTimeMS: 15000 })
         : [],
     ]);
 

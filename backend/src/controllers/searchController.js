@@ -60,9 +60,9 @@ export async function searchMembers(req, res) {
       $and: SEARCHABLE_FIELDS.filter((key) => values[key]).map((key) => {
         const value = values[key];
         if (key === 'hh_id') {
-          return { hh_id: { $regex: `^${escapeRegex(value.replace(/\s+/g, ''))}` } };
+          return { hh_id: { $regex: `^${escapeRegex(value.replace(/\s+/g, ''))}`, $options: 'i' } };
         }
-        return { [key]: { $regex: `^${escapeRegex(value.toUpperCase())}` } };
+        return { [key]: { $regex: `^${escapeRegex(value)}`, $options: 'i' } };
       }),
     };
 
