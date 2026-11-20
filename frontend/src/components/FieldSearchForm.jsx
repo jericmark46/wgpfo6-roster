@@ -36,9 +36,6 @@ export default function FieldSearchForm({
             lists.
           </p>
         </div>
-        <button type="button" className="clear-all" onClick={onClear} disabled={!filled}>
-          Clear all
-        </button>
       </div>
 
       <div className="field-grid">
@@ -85,9 +82,14 @@ export default function FieldSearchForm({
 
       <div className="field-form-actions">
         <p className="field-note">Leave any box empty to skip that field.</p>
-        <button type="submit" className="search-submit" disabled={loading || !filled}>
-          {loading ? <span className="button-spinner" aria-hidden="true" /> : 'Search roster'}
-        </button>
+        <div className="field-form-buttons">
+          <button type="button" className="clear-all" onClick={onClear} disabled={!filled}>
+            Clear filter
+          </button>
+          <button type="submit" className="search-submit" disabled={loading || !filled}>
+            {loading ? <span className="button-spinner" aria-hidden="true" /> : 'Search roster'}
+          </button>
+        </div>
       </div>
     </form>
   );

@@ -397,6 +397,17 @@ button:disabled {
   font-size: 0.78rem;
 }
 
+.field-form-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+.field-form-buttons .clear-all {
+  padding: 12px 14px;
+}
+
 .search-submit {
   flex: none;
   min-width: 150px;
@@ -1360,6 +1371,14 @@ mark {
   .field-form-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .field-form-buttons {
+    width: 100%;
+  }
+
+  .field-form-buttons .clear-all {
+    flex: 1;
   }
 
   .search-submit {
