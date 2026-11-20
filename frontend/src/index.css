@@ -438,6 +438,7 @@ button:disabled {
   display: grid;
   place-items: center;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 24px;
   background:
     radial-gradient(900px 400px at 15% -5%, rgba(13, 138, 143, 0.22), transparent 70%),
@@ -1239,21 +1240,60 @@ mark {
 }
 
 @media (max-width: 860px) {
+  .gate-screen {
+    place-items: start center;
+  }
+
+  .gate-shell {
+    border-radius: 14px;
+  }
+
   .gate-grid {
     grid-template-columns: 1fr;
   }
 
   .privacy-panel {
+    gap: 12px;
+    padding: 22px 18px 20px;
     border-right: 0;
     border-bottom: 1px solid var(--border);
   }
 
   .privacy-copy {
-    max-height: 250px;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+    font-size: 0.9rem;
+  }
+
+  .privacy-copy h3 {
+    font-size: 0.9rem;
+  }
+
+  .privacy-agree input {
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
   }
 
   .gate-access {
     padding: 28px 24px;
+  }
+
+  .gate-input-wrap input {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .gate-reveal {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .gate-submit {
+    min-height: 48px;
+    font-size: 1rem;
   }
 }
 

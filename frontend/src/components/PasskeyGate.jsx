@@ -11,7 +11,9 @@ export default function PasskeyGate({ onUnlock }) {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current?.focus();
+    if (window.matchMedia('(pointer: fine)').matches) {
+      inputRef.current?.focus();
+    }
   }, []);
 
   const submit = async (event) => {
@@ -196,8 +198,7 @@ export default function PasskeyGate({ onUnlock }) {
 
             <p className="gate-footnote">Access is limited to authorized DSWD personnel.</p>
             <p className="gate-notice">
-              Note: Please check the Data Privacy Notice agreement on the left first before
-              proceeding to the dashboard.
+              Note: Please read and agree to the Data Privacy Notice before continuing.
             </p>
           </section>
         </form>
