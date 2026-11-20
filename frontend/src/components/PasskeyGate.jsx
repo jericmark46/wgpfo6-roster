@@ -64,14 +64,14 @@ export default function PasskeyGate({ onUnlock }) {
             <div className="privacy-copy" tabIndex={0} aria-label="Data privacy notice text">
               <p>
                 The Department of Social Welfare and Development (DSWD) Field Office VI respects
-                your right to data privacy. In accordance with the Data Privacy Act of 2012, this
+                your right to data privacy and privacy of our beneficiaries. In accordance with the Data Privacy Act of 2012, this
                 notice explains how personal information is handled in the Walang Gutom Program
                 Household Member Lookup.
               </p>
 
               <h3>Who is responsible</h3>
               <p>
-                DSWD Field Office VI acts as the Personal Information Controller for this lookup
+                Information System Analysts of WGP Innovations Division, DSWD Field Office VI acts as the Personal Information Controller for this lookup
                 tool. Access is restricted to authorized personnel and is verified by passkey.
               </p>
 
@@ -87,15 +87,15 @@ export default function PasskeyGate({ onUnlock }) {
                 Personal information is processed only for authorized lookup and verification of
                 Walang Gutom Program household records. In line with the principles of transparency,
                 legitimate purpose, and proportionality, only information necessary for that
-                purpose is accessed.
+                purpose is accessed. We have deployed this website for smoother and faster process.
               </p>
 
-              <h3>Your rights as a data subject</h3>
+              <h3>Family data rights as a data subject</h3>
               <p>
-                Under Republic Act No. 10173, you have the right to be informed whether your
-                personal information is being processed, to access it, to request its correction,
-                to request its erasure or blocking when allowed by law, to file a complaint with the
-                National Privacy Commission, and to seek damages for violations of your data privacy
+                Under Republic Act No. 10173, it is the right to be informed whether the
+                family information is being processed, to access it, to request its correction,
+                to request its erasure or blocking when allowed by law, they have the right to file a complaint with the
+                National Privacy Commission, and to seek damages for violations of the data privacy
                 rights.
               </p>
 
