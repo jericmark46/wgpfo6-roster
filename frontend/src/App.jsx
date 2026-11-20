@@ -122,15 +122,17 @@ export default function App() {
       <header className="site-header">
         <div className="header-inner">
           <div className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32">
-                <path d="M16 3 4 8v8c0 7 5 11 12 13 7-2 12-6 12-13V8L16 3Z" />
-                <path d="M12 16.5 15 19.5l5.5-6" />
-              </svg>
-            </span>
+            <div className="brand-logos">
+              <img
+                className="brand-logo brand-logo-wgp"
+                src="/wgp-logo.png"
+                alt="Walang Gutom Program logo"
+              />
+              <img className="brand-logo brand-logo-dswd" src="/dswd-logo.png" alt="DSWD logo" />
+            </div>
             <div>
-              <p className="brand-title">Family Roster Search</p>
-              <p className="brand-subtitle">Household member lookup</p>
+              <p className="brand-title">Walang Gutom Program</p>
+              <p className="brand-subtitle">Household Member Lookup</p>
             </div>
           </div>
 
@@ -163,7 +165,7 @@ export default function App() {
         <section className="hero hero-compact">
           <div className="hero-copy">
             <span className="hero-kicker">Search · Verify · View</span>
-            <h1>Find a household and its family roster.</h1>
+            <h1>WGP household lookup.</h1>
             <p>
               Fill any of the boxes below — even one or two letters is enough. Open a matching
               member to see the complete household roster.
@@ -201,7 +203,7 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
-        <p>Family Roster Search · Read-only viewer for household roster records</p>
+        <p>Walang Gutom Program · Household Member Lookup · Read-only viewer for household roster records</p>
       </footer>
 
       {selectedHhId && (

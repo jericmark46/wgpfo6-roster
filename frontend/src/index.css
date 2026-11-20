@@ -113,24 +113,23 @@ button:disabled {
   gap: 12px;
 }
 
-.brand-mark {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  background: linear-gradient(145deg, var(--blue), var(--accent));
-  box-shadow: 0 6px 14px rgba(11, 92, 138, 0.25);
+.brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
 }
 
-.brand-mark svg {
-  width: 26px;
-  height: 26px;
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.brand-logo {
+  width: auto;
+  height: auto;
+  max-width: 96px;
+  max-height: 44px;
+  object-fit: contain;
+}
+
+.brand-logo-dswd {
+  max-width: 72px;
 }
 
 .brand-title {
@@ -445,34 +444,130 @@ button:disabled {
     linear-gradient(135deg, #082f49 0%, #0b5c8a 65%, #0a6f84 100%);
 }
 
-.gate-card {
-  width: min(420px, 100%);
-  padding: 36px 34px 30px;
+.gate-shell {
+  width: min(1080px, 100%);
   border-radius: 20px;
   background: #fff;
   box-shadow: 0 30px 70px rgba(2, 20, 34, 0.35);
-  text-align: center;
+  overflow: hidden;
 }
 
-.gate-mark {
+.gate-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+
+.gate-logo {
+  width: auto;
+  height: auto;
+  max-width: 150px;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.gate-logo-dswd {
+  max-width: 110px;
+}
+
+.gate-brand-divider {
+  width: 1px;
+  height: 34px;
+  background: var(--border);
+}
+
+.gate-grid {
   display: grid;
-  place-items: center;
-  width: 58px;
-  height: 58px;
-  margin: 0 auto 18px;
-  border-radius: 16px;
-  background: linear-gradient(145deg, var(--blue), var(--accent));
-  box-shadow: 0 10px 22px rgba(11, 92, 138, 0.28);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
 }
 
-.gate-mark svg {
-  width: 30px;
-  height: 30px;
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.privacy-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 28px 24px;
+  border-right: 1px solid var(--border);
+  background: #f8fbfd;
+}
+
+.privacy-heading h2 {
+  margin: 8px 0 2px;
+  color: var(--navy);
+  font-size: 1.28rem;
+  letter-spacing: -0.02em;
+}
+
+.privacy-law {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.privacy-copy {
+  max-height: 330px;
+  overflow-y: auto;
+  padding-right: 12px;
+  color: #405569;
+  font-size: 0.82rem;
+  line-height: 1.62;
+  scrollbar-color: #c9d6e2 transparent;
+}
+
+.privacy-copy p {
+  margin: 0 0 12px;
+}
+
+.privacy-copy h3 {
+  margin: 16px 0 5px;
+  color: var(--navy);
+  font-size: 0.84rem;
+}
+
+.privacy-disclaimer {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.privacy-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid #dbe5ee;
+  border-radius: 10px;
+  background: #fff;
+  color: #43586c;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.privacy-agree.has-error {
+  border-color: #d92d20;
+  background: #fff7f6;
+}
+
+.privacy-agree input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--blue);
+}
+
+.gate-access {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 34px 30px;
+}
+
+.gate-access-heading {
+  margin-bottom: 26px;
 }
 
 .gate-kicker {
@@ -484,15 +579,25 @@ button:disabled {
   text-transform: uppercase;
 }
 
-.gate-card h1 {
-  margin: 9px 0 8px;
+.gate-access h1 {
+  margin: 10px 0 10px;
   color: var(--navy);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  line-height: 1.22;
   letter-spacing: -0.025em;
 }
 
+.gate-access h1 span {
+  display: block;
+}
+
+.gate-access h1 span:last-child {
+  color: var(--blue);
+  font-size: 1.08rem;
+}
+
 .gate-copy {
-  margin: 0 0 26px;
+  margin: 0;
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.6;
@@ -581,6 +686,13 @@ button:disabled {
   margin: 18px 0 0;
   color: #9aa9b8;
   font-size: 0.72rem;
+}
+
+.gate-notice {
+  margin: 8px 0 0;
+  color: #b42318;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 main {
@@ -1126,9 +1238,67 @@ mark {
   }
 }
 
+@media (max-width: 860px) {
+  .gate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .privacy-panel {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .privacy-copy {
+    max-height: 250px;
+  }
+
+  .gate-access {
+    padding: 28px 24px;
+  }
+}
+
 @media (max-width: 720px) {
   .header-inner {
     padding: 12px 16px;
+  }
+
+  .brand-logos {
+    gap: 6px;
+  }
+
+  .brand-logo {
+    max-width: 62px;
+    max-height: 34px;
+  }
+
+  .brand-logo-dswd {
+    max-width: 50px;
+  }
+
+  .brand-title {
+    font-size: 0.9rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .gate-screen {
+    padding: 12px;
+  }
+
+  .gate-brand-bar {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .gate-logo {
+    max-width: 110px;
+    max-height: 42px;
+  }
+
+  .gate-logo-dswd {
+    max-width: 80px;
   }
 
   .header-stats {

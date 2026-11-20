@@ -8,16 +8,18 @@ export async function getLocations(req, res) {
     const province = typeof req.query.province === 'string' ? req.query.province.trim() : '';
     const municipality = typeof req.query.municipality === 'string' ? req.query.municipality.trim() : '';
 
-    const match = {};
-    if (province) match.province = exact(province);
-    if (municipality) match.municipality = exact(municipality);
+    const provinceMatch = {};
+    if (province) provinceMatch.province = exact(province);
+
+    const municipalityMatch = { ...provinceMatch };
+    if (municipality) municipalityMatch.municipality = exact(municipality);
 
     const collection = getHouseholdsCollection();
     const [provinces, municipalities, barangays] = await Promise.all([
       collection.distinct('province', {}, { maxTimeMS: 15000 }),
-      province ? collection.distinct('municipality', match, { maxTimeMS: 15000 }) : [],
-      province && municipality
-        ? collection.distinct('barangay', match, { maxTimeMS: 15000 })
+      collection.distinct('municipality', provinceMatch, { maxTimeMS: 15000 }),
+      municipality
+        ? collection.distinct('barangay', municipalityMatch, { maxTimeMS: 15000 })
         : [],
     ]);
 
